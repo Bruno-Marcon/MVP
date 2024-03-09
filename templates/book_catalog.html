@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Livraria</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <h1>Livraria</h1>
+    <form method="post">
+        <label for="book">Novo Livro:</label>
+        <input type="text" name="book" required>
+        <button type="submit" name="add_book">Adicionar Livro</button>
+    </form>
+    <ul>
+        {% for book in books %}
+        <li>
+            {{ book.title }}
+            <form method="post" style="display: inline;">
+                <input type="hidden" name="book_id" value="{{ book.id }}">
+                <input type="text" name="new_title" placeholder="novo titulo" >
+                <button type="submit" name="edit_book">Editar</button>
+                <button type="submit" name="delete_book">Deletar</button>
+            </form>
+        </li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
